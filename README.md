@@ -1,39 +1,38 @@
-# Python Server
 
-This project contains a FastAPI server implemented in Python. It provides two routes for managing a task list.
+# Anythink Market - Multi-server Project
 
-## Project Structure
+Este proyecto contiene dos servidores:
 
-The project has the following files and directories:
+- **Python FastAPI** (puerto 8000)
+- **Node.js Express** (puerto 8001)
 
-- `python-server/src/main.py`: This file contains the implementation of the FastAPI server with two routes. It handles adding a task to a list and retrieving the list.
+Ambos servidores gestionan una lista de tareas y exponen endpoints similares.
 
-- `python-server/src/__init__.py`: This file is an empty file that marks the `src` directory as a Python package.
+## Estructura del Proyecto
 
-- `python-server/requirements.txt`: This file lists the dependencies required for the FastAPI server and other dependencies.
+- `python-server/src/main.py`: Implementación del servidor FastAPI.
+- `express-server/src/index.js`: Implementación del servidor Express.
+- `docker-compose.yml`: Orquestación de ambos servicios con Docker Compose.
 
-- `python-server/Dockerfile`: This file is used to build a Docker image for the FastAPI server. It specifies the base image, copies the source code into the image, installs the dependencies, and sets the command to run the server.
+## Cómo ejecutar ambos servidores
 
-- `docker-compose.yml`: This file is used to define and run multi-container Docker applications. It specifies the services to run, their configurations, and any dependencies between them.
+1. Construye y levanta los contenedores:
 
-## Getting Started
-
-To run the FastAPI server using Docker, follow these steps:
-
-- Build and start the Docker containers by running the following command:
-
-  ```shell
+  ```bash
   docker compose up
   ```
 
-  This command will build the Docker image for the FastAPI server and start the containers defined in the `docker-compose.yml` file.
+2. Accede a los servidores:
+  - Python: http://localhost:8000
+  - Node.js: http://localhost:8001
 
-- The FastAPI server should now be running. You can access at port `8000`.
+## Endpoints disponibles
 
-## API Routes
+### Python FastAPI (puerto 8000)
+- `POST /tasks`: Agrega una tarea.
+- `GET /tasks`: Devuelve la lista de tareas.
 
-The FastAPI server provides the following API routes:
-
-- `POST /tasks`: Adds a task to the task list. The request body should contain the task details.
-
-- `GET /tasks`: Retrieves the task list.
+### Node.js Express (puerto 8001)
+- `POST /tasks`: Agrega una tarea.
+- `GET /tasks`: Devuelve la lista de tareas.
+- `GET /`: Devuelve "Hello World".
